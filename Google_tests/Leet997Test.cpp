@@ -30,18 +30,18 @@ public:
 
 class TestFixture : public ::testing::Test {
 protected:
-    virtual void SetUp() {
+    TestFixture() {
         solution = new Solution();
     }
 
-    virtual void TearDown() {
+    ~TestFixture() override {
         delete solution;
     }
 
     Solution *solution;
 };
 
-TEST_F(TestFixture, Test) {
+TEST_F(TestFixture, Test) { // NOLINT(cert-err58-cpp)
     vector<vector<int>> trust{{1, 2}};
     EXPECT_EQ(solution->findJudge(2, trust), 2);
 }
